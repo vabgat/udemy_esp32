@@ -8,6 +8,10 @@
 #ifndef MAIN_HTTP_SERVER_H_
 #define MAIN_HTTP_SERVER_H_
 
+#define OTA_UPDATE_PENDING              0
+#define OTA_UPDATE_SUCCESSFUL           1
+#define OTA_UPDATE_FAILED               2
+
 /**
  * Messages for the HTTP monitor
  */
@@ -18,7 +22,6 @@ typedef enum http_server_message
     HTTP_MSG_WIFI_CONNECT_FAIL,
     HTTP_MSG_OTA_UPDATE_SUCCESSFUL,
     HTTP_MSG_OTA_UPDATE_FAILED,
-    HTTP_MSG_OTA_UPDATE_INITIALIZED,
 } http_server_message_e;
 
 /**
@@ -47,5 +50,9 @@ void http_server_start(void);
  */
 void http_server_stop(void);
 
+/**
+ * Timer callback function which calls esp_restart upon succesful firmware updates
+ */
+void http_server_fw_update_reset_callback(void *arg);
 
 #endif /* HTTP_SERVER_H_ */
