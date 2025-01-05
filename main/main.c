@@ -5,6 +5,7 @@
 #include "nvs_flash.h"
 #include "DHT11.h"
 #include "wifi_app.h"
+#include "wifi_reset_button.h"
 
 void app_main(void)
 {
@@ -22,4 +23,7 @@ void app_main(void)
 
     // Start DHT22 Sensor task
     DHT11_task_start();
+
+    // Start wifi reset button task
+    wifi_reset_button_config();
 }
